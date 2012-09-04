@@ -185,6 +185,14 @@ module Devise
         admin_ldap.search(:filter => filter, :base => @group_base).collect(&:dn)
       end
 
+      def attribute attribute_name
+        admin_ldap = Connection.admin
+
+        DeviseLdapAuthenticatable::Logger.send("Getting attribute #{attribute_name} for user #{dn}")
+
+        find_ldap_user(admin_ldap)[attribute_name]
+      end
+
       def valid_login?
         !search_for_login.nil?
       end
