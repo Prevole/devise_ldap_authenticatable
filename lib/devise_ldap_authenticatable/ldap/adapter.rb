@@ -80,10 +80,6 @@ module Devise
         self.ldap_connect(login).search_for_login
       end
 
-      def self.get_ldap_attribute(login,attribute_name)
-        self.ldap_connect(login).attribute(attribute_name)
-      end
-
     end
 
   end
